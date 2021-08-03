@@ -87,8 +87,16 @@ var app = app || {};
 			var main;
 			var todos = this.props.model.todos;
 
+			//FIXED THIS FUNCTION
 			var shownTodos = todos.filter(function (todo) {
-				return todo
+				switch (this.state.nowShowing) {
+					case app.ACTIVE_TODOS:
+						return !todo.completed;
+					case app.COMPLETED_TODOS:
+						return todo.completed;
+					default:
+						return true;
+					}
 			}, this);
 
 			var todoItems = shownTodos.map(function (todo) {
@@ -149,6 +157,7 @@ var app = app || {};
 							placeholder="What needs to be done?"
 							value={this.state.newTodo}
 							onKeyDown={this.handleNewTodoKeyDown}
+							//onDoubleClick={this.handleEdit}	=> thought this might fux double click issue
 							onChange={this.handleChange}
 							autoFocus={true}
 						/>

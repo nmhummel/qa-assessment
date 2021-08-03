@@ -26,7 +26,7 @@ var app = app || {};
 			this.props.onEdit();
 			this.setState({editText: this.props.todo.title});
 		},
-
+		
 		handleKeyDown: function (event) {
 			if (event.which === ESCAPE_KEY) {
 				this.setState({editText: this.props.todo.title});
@@ -98,6 +98,7 @@ var app = app || {};
 						className="edit"
 						value={this.state.editText}
 						onBlur={this.handleSubmit}
+						// onDoubleClick={this.handleEdit}  => thought this might fux double click issue
 						onChange={this.handleChange}
 						onKeyDown={this.handleKeyDown}
 					/>
